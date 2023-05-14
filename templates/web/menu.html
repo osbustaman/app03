@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+    <a href="index.html" class="navbar-brand p-0">
+        <h1 class="m-0">
+            <img class="m-0" src="/media/{{objectCompany.0.com_imagecompany}}" alt="Image">
+        </h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            {% for ob in objects %}
+            <a href="{{ob.it_link}}" class="nav-item nav-link {% if forloop.counter0 == 0 %}active{% endif %}">{{ob.it_name}}</a>
+            {% endfor %}
+        </div>
+        {% if objects.0.menu.me_hasasearchengine == 1 %}
+        <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+        {% endif %}
+    </div>
+</nav>
