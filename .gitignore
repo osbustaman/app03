@@ -6,3 +6,4 @@ db.sqlite3
 app01/applications/*/migrations/[0-9]+_.*\.py
 
 env
+.vscode/launch.json

@@ -156,6 +156,7 @@ class Menu(TimeStampedModel):
     me_id = models.AutoField("Key", primary_key=True)
     me_name = models.CharField("nombre menu", max_length=100)
     me_hasasearchengine = models.IntegerField("tiene buscador?", choices=IS, default=2)
+    me_isactive = models.IntegerField("Menu activo", choices=IS, default=1)
 
     def __int__(self):
         return self.me_id
@@ -173,7 +174,7 @@ class Menu(TimeStampedModel):
 
 
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('me_id', 'me_name', 'me_hasasearchengine')
+    list_display = ('me_id', 'me_name', 'me_hasasearchengine', 'me_isactive')
 
 
 class Items(TimeStampedModel):
@@ -184,10 +185,11 @@ class Items(TimeStampedModel):
     )
 
     TYPE_PAGE = (
-        (1, 'Inicio'),
-        (2, 'Acerca de'),
-        (3, 'Servivios'),
-        (4, 'Contacto'),
+        (1, 'Home'),
+        (2, 'About'),
+        (3, 'WhyChooseUs'),
+        (4, 'OurServices'),
+        (5, 'Contact'),
     )
 
     it_id = models.AutoField("Key", primary_key=True)
@@ -260,11 +262,16 @@ class Plugins(TimeStampedModel):
 
     plu_id = models.AutoField("Key", primary_key=True)
     plu_elementname = models.CharField("nombre del elemento", max_length=100)
+    plu_page = models.CharField("nombre de la página elemento", max_length=100, null=True, blank=True)
     plu_icon = models.CharField("icono del elemento", max_length=100, null=True, blank=True)
     plu_title = models.CharField("título del elemento", max_length=100, null=True, blank=True)
     plu_text = models.TextField("texto", null=True, blank=True)
     plu_isbox = models.IntegerField("tiene recuadro", choices=IS, default=2)
-    plu_active = models.IntegerField("link activo", choices=IS, default=1)
+    plu_linkactive = models.IntegerField("link activo", choices=IS, default=1)
+    plu_link = models.TextField("link del elemento", null=True, blank=True)
+    plu_image = models.ImageField(
+        "subir imagen", help_text="tamaño de la imagen 1920x1080, solo formatos .jpg|.png|.gif|.jpeg", upload_to='company_images/', null=True, blank=True)
+    plu_active = models.IntegerField("plugin activo", choices=IS, default=1)
 
     def __int__(self):
         return self.plu_id
@@ -282,7 +289,8 @@ class Plugins(TimeStampedModel):
 
 
 class PluginsAdmin(admin.ModelAdmin):
-    list_display = ('plu_id', 'plu_elementname', 'plu_isbox', 'plu_icon', 'plu_active')
+    list_display = ('plu_id', 'plu_elementname', 'plu_isbox', 'plu_icon', 'plu_active', 'plu_page', 'plu_image')
+    list_filter = ('plu_page', 'plu_active')
 
 
 class BlockHome(TimeStampedModel):
@@ -293,7 +301,11 @@ class BlockHome(TimeStampedModel):
     )
 
     DEFAULT_PAGE = (
-        (1, 'about'),
+        (1, 'About'),
+        (2, 'WhyChooseUs'),
+        (3, 'OurServices'),
+        (4, 'Contact'),
+        (100, 'FactStart'),
     )
 
     bh_id = models.AutoField("Key", primary_key=True)
@@ -301,10 +313,10 @@ class BlockHome(TimeStampedModel):
     bh_title = models.CharField("titulo del bloque", max_length=100)
     bh_order = models.IntegerField("posición del bloque")
     bh_image = models.ImageField(
-        "subir imagen", help_text="tamaño de la imagen 1920x1080, solo formatos .jpg|.png|.gif|.jpeg", upload_to='company_images/')
+        "subir imagen", help_text="tamaño de la imagen 1920x1080, solo formatos .jpg|.png|.gif|.jpeg", upload_to='company_images/', null=True, blank=True)
     bh_html = RichTextField("HTML o texto para el bloque", help_text="Ingrese el texto utilizando CKEditor.", null=True, blank=True)
     bh_defaultpage = models.IntegerField("página por defecto", choices=DEFAULT_PAGE, null=True, blank=True)
-    plugins = models.ManyToManyField(Plugins, db_column="bh_plugins_id", null=True, blank=True)
+    plugins = models.ManyToManyField(Plugins, db_column="bh_plugins_id", blank=True)
     bh_active = models.IntegerField("bloque activo", choices=IS, default=1)
 
     def __int__(self):
@@ -323,5 +335,15 @@ class BlockHome(TimeStampedModel):
 
 class BlockHomeAdmin(admin.ModelAdmin):
     list_display = ('bh_id', 'bh_name', 'bh_order', 'bh_active', 'bh_defaultpage', 'bh_image')
+
+    def save_model(self, request, obj, form, change):
+        # Llamamos al método save_model del padre para guardar el objeto en la base de datos
+        super().save_model(request, obj, form, change)
+
+        # Obtenemos la lista de plugins seleccionados en el formulario
+        plugins_selected = form.cleaned_data['plugins']
+
+        # Agregamos los plugins seleccionados a la relación ManyToManyField de plugins
+        obj.plugins.set(plugins_selected)
 
 
