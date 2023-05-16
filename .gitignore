@@ -3,9 +3,7 @@ db.sqlite3
 *.jpg
 *.png
 
-**/migrations/!(__init__.py)
+
 
 env
-.vscode/launch.json
-applications/web/migrations/0001_initial.py
-applications/web/migrations/0002_plugins_plu_page.py
+
