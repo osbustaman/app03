@@ -53,8 +53,8 @@
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    {% for sn in listSocialNetworks %}
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{sn.sn_link}}"><i class="{{sn.sn_icon}}"></i></a>
+                    {% for snc in listSocialNetworksCompany %}
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="{{snc.snc_link}}"><i class="{{snc.snc_icon}}"></i></a>
                     {% endfor %}
                 </div>
             </div>
@@ -123,6 +123,8 @@
     {% include block_.bh_defaultpage with objects=block_.block %}
 
     {% endfor %}
+
+    {% include 'web/includes/vendors.html' with objects=vendors %}
 
     <!-- Footer Start -->
     {% include 'web/footer.html' with objects1=objectItems objects2=objectOtherLinks object3=objectCompany.0.com_textfooter %}
