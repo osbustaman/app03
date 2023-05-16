@@ -1,6 +1,7 @@
 db.sqlite3
 *.pyc
 *.jpg
+*.png
 
 **/migrations/!(__init__.py)
 
