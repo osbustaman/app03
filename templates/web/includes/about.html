@@ -20,6 +20,9 @@
                     {% endif %}
                 </p>
 
+                <br>
+                <br>
+
                 <div class="row g-0 mb-3">
                     {% for element in objects.plugins.all %}
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
@@ -29,6 +32,7 @@
                 </div>
 
                 {% if typePage %}
+                
                 <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
                     <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                         <i class="fa fa-phone-alt text-white"></i>
@@ -38,7 +42,7 @@
                         <h4 class="text-primary mb-0">{{company.0.com_phone}}</h4>
                     </div>
                 </div>
-                <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Contactanos</a>
+                <a href="/contactanos/5/" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Contactanos</a>
                 {% endif %}
 
             </div>
