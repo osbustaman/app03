@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
+from django.core import serializers
+from applications.web.models import Company
 
 class menu_middleware_items(object):
     def __init__(self, get_response):
@@ -13,18 +15,16 @@ class menu_middleware_items(object):
 
         try:
             if '/' in request.path:
-                request.session['item'] = 1
+                request.session['item'] = 'home'
 
-            if 'acerca-de-nosotros/2/' in request.path:
-                request.session['item'] = 2
+            if 'acerca-de-nosotros/' in request.path:
+                request.session['item'] = 'acerca-de-nosotros'
 
-            if 'nuestros-servicios/4/' in request.path:
-                request.session['item'] = 4
+            if 'nuestros-servicios/' in request.path:
+                request.session['item'] = 'nuestros-servicios'
 
-            if 'contactanos/5/' in request.path:
-                request.session['item'] = 5
+            if 'contactanos/' in request.path:
+                request.session['item'] = 'contactanos'
             
-            if '/servicio/8/' in request.path:
-                request.session['item'] = 4
         except:
             pass

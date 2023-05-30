@@ -1,105 +1,92 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+import json
 
-from applications.web.models import BlockHome, Carrousel, Company, Items, OtherLinks, Pages, Plugins, SocialNetworkCompany
-from applications.web.utils import elige_choices
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
+from applications.web.models import BlockHome, Carrousel, Pages, RequestWeb, Services
+from applications.web.utils import send_email
 
 # Create your views here.
 def index(request):
 
-    objectCompany = Company.objects.all()
-    objectSocialNetworkCompany = SocialNetworkCompany.objects.all()
     objectCarrousel = Carrousel.objects.filter(carr_isactive = 1)
-    objectItems = Items.objects.filter(menu__me_isactive = 1).order_by('it_order')
-    objectOtherLinks = OtherLinks.objects.filter(ol_active = 1).order_by('ol_order')
-    objectBlocks = BlockHome.objects.filter(bh_active = 1, bh_defaultpage__isnull=False).order_by('bh_order')
-    vendors = Plugins.objects.filter(plu_active = 1, plu_page = 7)
-    
-    listSocialNetworksCompany = []
-    for sn in objectSocialNetworkCompany:
-        objectsSocialNetworksCompany = {
-            'snc_link': sn.snc_link,
-            'snc_icon': elige_choices(SocialNetworkCompany.ICON_NETWORK, sn.snc_icon)
-        }
-        listSocialNetworksCompany.append(objectsSocialNetworksCompany)
-
-    listBlocks = []
-    for blo in objectBlocks:
-        defaultPage = elige_choices(BlockHome.DEFAULT_PAGE, blo.bh_defaultpage)
-        objectsBlocks = {
-            'block': blo,
-            'bh_defaultpage': f'web/includes/' + defaultPage + '.html'
-        }
-        listBlocks.append(objectsBlocks)
+    objectBlocks = BlockHome.objects.filter(bh_active = 1).order_by('bh_id')
 
     data = {
-        'objectCompany': objectCompany,
-        'listSocialNetworksCompany': listSocialNetworksCompany,
         'objectCarrousel': objectCarrousel,
-        'objectItems': objectItems,
-        'objectOtherLinks': objectOtherLinks,
-        'listBlocks': listBlocks,
-        'vendors': vendors
+        'typePage': 'home',
+        'objectBlocks': objectBlocks
     }
     return render(request, 'web/index.html', data)
 
-def pages(request, page = None, plu_id = None):
+def pages(request):
 
-    objectCompany = Company.objects.all()
-    objectSocialNetworkCompany = SocialNetworkCompany.objects.all()
-    objectItems = Items.objects.filter(menu__me_isactive = 1).order_by('it_order')
-    objectOtherLinks = OtherLinks.objects.filter(ol_active = 1).order_by('ol_order')
-    objectBlocks = BlockHome.objects.filter(bh_active = 1, bh_defaultpage__isnull=False).order_by('bh_order')
-    vendors = Plugins.objects.filter(plu_active = 1, plu_page = 7)
+    namePage = (request.path).replace("/", "")
+    objectPage = Pages.objects.filter(typePages__tp_shortnamepage = namePage).first()
 
-    listSocialNetworksCompany = []
-    for sn in objectSocialNetworkCompany:
-        objectsSocialNetworksCompany = {
-            'snc_link': sn.snc_link,
-            'snc_icon': elige_choices(SocialNetworkCompany.ICON_NETWORK, sn.snc_icon)
-        }
-        listSocialNetworksCompany.append(objectsSocialNetworksCompany)
-
-    listElements = []
-
-    try:
-        linkPage = objectItems.get(it_pagetype=page)
-        namePage = elige_choices(Items.TYPE_PAGE, linkPage.it_pagetype)
-        objectPage = Pages.objects.filter(pag_defaultpage = linkPage.it_pagetype).first()
-        
-
-        objectEmelemnts = {
-                'title': objectPage.pag_title,
-                'subTitle': objectPage.pag_subtitle,
-                'image': objectPage.pag_backgroundimage,
-                'text': objectPage.pag_html,
-            }
-        
-        if linkPage.it_pagetype == 2:
-            pass
-
-        if linkPage.it_pagetype == 4:
-            pass
-
-        if linkPage.it_pagetype == 5:
-            objectEmelemnts['plugins'] = objectPage.plugins
-
-        if linkPage.it_pagetype == 8:
-            pass
-
-
-        listElements.append(objectEmelemnts)
-    
-    except:
-        namePage = 'uorservicespage'
+    objectsServices = Services.objects.filter(serv_isactive = 1)
 
     data = {
-        'objectCompany': objectCompany,
-        'listSocialNetworksCompany': listSocialNetworksCompany,
-        'objectItems': objectItems,
-        'objectOtherLinks': objectOtherLinks,
-        'listElements': listElements,
-        'objectBlocks': objectBlocks,
-        'vendors': vendors
+        'namePage': f'web/pages/{namePage}.html',
+        'objectPage': objectPage,
+        'title': namePage.replace("-", " "),
+        'objectsServices': objectsServices
     }
-    return render(request, f'web/pages/{namePage}.html', data)
+    return render(request, 'web/index.html', data)
+
+@csrf_exempt
+def ajaxRequestMail(request):
+
+    try:
+
+        sender_email = request.POST['emailInput']
+        subject = request.POST['serviceSelect']
+        message = request.POST['messageInput']
+
+        send_email(sender_email, subject, message)
+
+        rw = RequestWeb()
+        rw.rw_namecontact = request.POST['nameInput']
+        rw.services = Services.objects.get(serv_id = int(request.POST['serviceSelect']))
+        rw.rw_phonocontact = request.POST['phoneInput']
+        rw.rw_mailcontact = request.POST['emailInput']
+        rw.rw_mesagge = request.POST['messageInput']
+        rw.save()
+
+        message = 'success'
+        error = False
+
+    except Exception as inst:
+        message = 'failed'
+        error = inst
+    
+    html = {
+        'message': message,
+        'error': error
+    }
+    response = json.dumps(html)
+    return HttpResponse(response, content_type = 'application/json')
+
+@csrf_exempt
+def ajaxRegisterMail(request):
+
+    try:
+
+        rw = RequestWeb()
+        rw.rw_mailcontact = request.POST['emailInput']
+        rw.save()
+
+        message = 'success'
+        error = False
+
+    except Exception as inst:
+        message = 'failed'
+        error = inst
+    
+    html = {
+        'message': message,
+        'error': error
+    }
+    response = json.dumps(html)
+    return HttpResponse(response, content_type = 'application/json')

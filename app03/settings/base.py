@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'app03.middleware.middleware_menu.menu_middleware_items',
+    'app03.middleware.middleware_sessions.middleware_sessions',
 ]
 
 
@@ -161,3 +162,12 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+
+
+# send mail
+SMTP_USERNAME = config('SMTP_USERNAME')
+SMTP_PASSWORD = config('SMTP_PASSWORD')
+SMTP_PORT = config('SMTP_PORT')
+SMTP_SERVER = config('SMTP_SERVER')
+RECEIVER_EMAIL = config('RECEIVER_EMAIL')

@@ -1,25 +1,17 @@
+{% include 'web/pages/banner_header.html' with objects=objectPage %}
+
 <!-- About Start -->
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-7">
                 <div class="section-title position-relative pb-3 mb-5">
-                    {% if typePage %}
-                    <h5 class="fw-bold text-primary text-uppercase">{{ title }}</h5>
-                    <h1 class="mb-0">{{ subTitle }}</h1>
-                    {% else %}
-                    <h5 class="fw-bold text-primary text-uppercase">{{ objects.bh_name }}</h5>
-                    <h1 class="mb-0">{{ objects.bh_title }}</h1>
-                    {% endif %}
+                    <h5 class="fw-bold text-primary text-uppercase">{{ objectPage.pag_title }}</h5>
+                    <h1 class="mb-0">{{ objectPage.pag_subtitle }}</h1>
                 </div>
                 <p class="mb-4">
-                    {% if typePage %}
-                    {{ text|safe }}
-                    {% else %}
-                    {{ objects.bh_html|safe }}
-                    {% endif %}
+                    {{ objectPage.pag_html|safe }}
                 </p>
-
                 <br>
                 <br>
 
@@ -31,24 +23,21 @@
                     {% endfor %}
                 </div>
 
-                {% if typePage %}
-                
                 <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
                     <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                         <i class="fa fa-phone-alt text-white"></i>
                     </div>
                     <div class="ps-4">
                         <h5 class="mb-2">Llamar para consultar cualquier duda</h5>
-                        <h4 class="text-primary mb-0">{{company.0.com_phone}}</h4>
+                        <h4 class="text-primary mb-0">{{ request.session.object_serialzer.0.fields.com_phone }}</h4>
                     </div>
                 </div>
-                <a href="/contactanos/5/" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Contactanos</a>
-                {% endif %}
+                <a href="/contactanos/" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Contactanos</a>
 
             </div>
             <div class="col-lg-5" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="/media/{{ objects.bh_image }}" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="/media/{{ objectPage.images.all.0.img_image }}" style="object-fit: cover;">
                 </div>
             </div>
         </div>

@@ -1,0 +1,142 @@
+{% include 'web/pages/banner_header.html' with objects=objectPage %}
+
+<!-- Contact Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase">{{ objectPage.pag_title }}</h5>
+            <h1 class="mb-0">{{ objectPage.pag_subtitle }}</h1>
+        </div>
+        <div class="row g-5 mb-5">
+
+            {% for element in objectPage.plugins.all %}
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded"
+                        style="width: 60px; height: 60px;">
+                        <i class="{{ element.plu_icon }} text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">{{ element.plu_title }}</h5>
+                        <h4 class="text-primary mb-0">{{ element.plu_text }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                <form name="frm" id="frm" method="post">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Tu nombre*"
+                                style="height: 55px;" id="nameInput" name="nameInput">
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select bg-light border-0" style="height: 55px;" id="serviceSelect"
+                                name="serviceSelect">
+                                <option selected>Selecciona un servicio*</option>
+                                {% for serv in objectsServices %}
+                                <option value="{{ serv.serv_id }}">{{ serv.serv_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Teléfono"
+                                style="height: 55px;" id="phoneInput" name="phoneInput" oninput="validateInput(event)">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control border-0 bg-light px-4" placeholder="Tu correo*"
+                                style="height: 55px;" id="emailInput" name="emailInput">
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Mensaje*"
+                                id="messageInput" name="messageInput"></textarea></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="button" onclick="sendMessage()">Enviar
+                                mensaje</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212999.27177144706!2d-70.79464024601711!3d-33.47239249134405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1684932148408!5m2!1ses!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+<script>
+
+    const send_message = () => {
+        const link = "/ajaxRequest/";
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: "POST",
+                url: link,
+                data: $('#frm').serialize(),
+                success: function (data) {
+                    resolve(data);
+                },
+                error: function (obj, error, objError) {
+                    console.log("Error");
+                    reject(objError);
+                }
+            });
+        });
+    };
+
+    function sendMessage() {
+        const name = document.getElementById('nameInput').value;
+        const service = document.getElementById('serviceSelect').value;
+        const email = document.getElementById('emailInput').value;
+        const message = document.getElementById('messageInput').value;
+
+        if (name === '' || service === '' || email === '' || message === '') {
+            $.alert({
+                title: 'Error!',
+                content: 'Por favor, complete todos los campos obligatorios',
+            });
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            $.alert({
+                title: 'Error!',
+                content: 'La dirección de correo electrónico es válida',
+            });
+            return;
+        } 
+
+        send_message()
+            .then(data => {
+                $.alert({
+                    title: 'Confirmación!',
+                    content: 'Tú consulta fue enviada con éxito, te contactaremos a la brevedad!',
+                });
+                return;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    function validateInput(event) {
+        const input = event.target;
+        const regex = /^[0-9\s-+]*$/;
+
+        const isValid = regex.test(input.value);
+        if (!isValid) {
+            input.value = input.value.replace(/[^0-9\s-+]/g, '');
+        }
+    }
+
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
