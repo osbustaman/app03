@@ -84,6 +84,7 @@
     </div>
     <!-- Full Screen Search End -->
 
+    {% if typePage == 'home' %}
     <!-- Facts Start -->
     <div class="container-fluid facts py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
@@ -125,6 +126,7 @@
         </div>
     </div>
     <!-- Facts Start -->
+    {% endif %}
 
     {% if typePage == 'home' %}
         {% for block_ in listBlocks %}

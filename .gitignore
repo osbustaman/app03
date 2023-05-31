@@ -1,12 +1,18 @@
 db.sqlite3
 .vscode/launch.json
+migrations
+__pycache__
 env
 *.pyc
 *.jpg
 *.png
 
+
+**/web_old/
+**/startup2-1.0.0/
 **/migrations/!(__init__.py)
-
-
-
-
+media/company_images/icon.png
+.vscode/launch.json
+.vscode/settings.json
+applications/web/migrations/0001_initial.py
+applications/web/migrations/0002_plugins_plu_page.py

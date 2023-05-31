@@ -17,20 +17,25 @@ class Command(BaseCommand):
         domain = parsed_url.scheme + '://' + parsed_url.netloc
         return domain
     
-    def save_statics_files(self, routes_files, destination_directory):
+    def save_statics_files(self, routes_files):
         for ruta_archivo in routes_files:
+            
+            parts = ruta_archivo.split("/")[:-1]
+            destination_directory = os.path.join(*parts) if parts else ""
 
-            print(" *************** ")
-            print(ruta_archivo)
-            print(" *************** ")
+            route = f"{BASE_DIR}/templates/web/www/{destination_directory}"
+            # Crear el directorio de destino si no existe
+            if not os.path.exists(route):
+                os.makedirs(route)
 
+            nombre_archivo = os.path.basename(ruta_archivo)
+            ruta_destino = os.path.join(destination_directory, nombre_archivo) if parts else ""
+            
+            route_static = f"{self.get_domain_url()}/{ruta_destino}"
+            response = requests.get(route_static)
+            with open(os.path.join(route, nombre_archivo), 'wb') as archivo:
+                archivo.write(response.content)
 
-            """nombre_archivo = os.path.basename(ruta_archivo)
-            ruta_destino = os.path.join(destination_directory, nombre_archivo)
-
-            response = requests.get(ruta_archivo)
-            with open(ruta_destino, 'wb') as archivo:
-                archivo.write(response.content)"""
     
     def get_route_files(self, url_file):
         response = requests.get(url_file)
@@ -38,6 +43,7 @@ class Command(BaseCommand):
 
         routes_css = []
         routes_js = []
+        routes_img = []
 
         for css_tag in soup.find_all('link', rel='stylesheet'):
             route_css = css_tag['href']
@@ -47,7 +53,11 @@ class Command(BaseCommand):
             route_js = js_tag['src']
             routes_js.append(route_js)
 
-        return routes_css, routes_js
+        for img_tag in soup.find_all('img', src=True):
+            route_img = img_tag['src']
+            routes_img.append(route_img)
+
+        return routes_css, routes_js, routes_img
 
     def get_code_html(self, url):
         response = requests.get(url)
@@ -58,36 +68,47 @@ class Command(BaseCommand):
         with open(save_file, 'w') as file:
             file.write(code_html)
 
+
+    def modify_links(self, html_content, name_file=""):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        a_tags = soup.find_all('a')
+
+        for a_tag in a_tags:
+            href = a_tag.get('href')  # Obtener el enlace actual
+            print(href)
+            # Realizar las modificaciones necesarias en el enlace
+            # Por ejemplo, cambiar '/ruta' por '/nueva_ruta'
+            #new_href = href.replace('/ruta', '/nueva_ruta')
+            #a_tag['href'] = new_href  # Asignar el nuevo enlace al atributo 'href'
+
+        #modified_html = str(soup)  # Obtener el HTML modificado como una cadena de texto
+        #return modified_html
+
     def handle(self, *args, **options):
 
         items_objects = Items.objects.filter(it_active=1)
         for it in items_objects:
             if it.it_link == '/':
                 name_file = "index.html"
-
-                print("Obtener el código HTML de la página")
                 url_page = f"{self.get_domain_url()}{it.it_link}"
                 code_html = self.get_code_html(url_page)
             else:
                 name_file = f"{it.it_link}.html"
-                print("Obtener el código HTML de la página")
                 url_page = f"{self.get_domain_url()}/{it.it_link}"
                 code_html = self.get_code_html(url_page)
+            
+            urls_tags = self.get_all_a_tags(url_page, name_file)
 
-            print(" Obtener las rutas de los archivos CSS y JS")
-            rutas_css, rutas_js = self.get_route_files(url_page)
-            #print(rutas_css)
-            #print(rutas_js)
-            #print(f"{self.get_domain_url()}/{it.it_link}")
+            rutas_css, rutas_js, rutas_img = self.get_route_files(url_page)
 
-            rutas_css = [ruta for ruta in rutas_css if 'https' in ruta]
-
-            print(rutas_css)
+            rutas_css = [ruta for ruta in rutas_css if not 'https' in ruta]
+            rutas_js = [ruta for ruta in rutas_js if not 'https' in ruta]
+            rutas_img = [ruta for ruta in rutas_img if not 'https' in ruta]
 
             # Guardar los archivos CSS en el directorio de destino
-            self.save_statics_files(rutas_css, '/')
-
-            print("Guardar el código HTML en un archivo")
             self.save_file_html(name_file, code_html)
+            self.save_statics_files(rutas_css)
+            self.save_statics_files(rutas_js)
+            self.save_statics_files(rutas_img)
 
-            print("El archivo HTML se ha guardado exitosamente.")
+            

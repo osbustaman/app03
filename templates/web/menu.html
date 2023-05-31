@@ -13,7 +13,7 @@
             {% if item.it_name|lower == 'home' %}
             <a href="/" class="nav-item nav-link {% if request.session.item == item.it_name|lower %}active{% endif %}">{{item.it_name}}</a>
             {% else %}
-            <a href="/{{item.it_link}}/" class="nav-item nav-link {% if request.session.item == item.it_link|lower %}active{% endif %}">{{item.it_name}}</a>
+            <a href="/{{item.it_link}}/" data-bs-menu="menu-page" class="nav-item nav-link {% if request.session.item == item.it_link|lower %}active{% endif %}">{{item.it_name}}</a>
             {% endif %}
             {% endfor %}
         </div>
