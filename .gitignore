@@ -16,3 +16,4 @@ media/company_images/icon.png
 .vscode/settings.json
 applications/web/migrations/0001_initial.py
 applications/web/migrations/0002_plugins_plu_page.py
+app03/.env

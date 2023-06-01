@@ -6,11 +6,13 @@ from applications.web.utils import elige_choices
 
 def middleware_sessions(get_response):
     def middleware(request):
-
-        # Código de middleware antes de almacenar el objeto en la sesión
-        objectCompany = Company.objects.all().first()
-        serializedObj = serializers.serialize('json', [objectCompany])
-        request.session['object_serialzer'] = json.loads(serializedObj)
+        try:
+            # Código de middleware antes de almacenar el objeto en la sesión
+            objectCompany = Company.objects.all().first()
+            serializedObj = serializers.serialize('json', [objectCompany])
+            request.session['object_serialzer'] = json.loads(serializedObj)
+        except:
+            request.session['object_serialzer'] = None
 
 
         objectsSocialNetwork = SocialNetworkCompany.objects.all()
