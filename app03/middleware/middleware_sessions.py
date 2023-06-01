@@ -1,6 +1,6 @@
 import json
 from django.core import serializers
-
+from applications.clients.models import Client
 from applications.web.models import Company, Items, OtherLinks, SocialNetwork, SocialNetworkCompany
 from applications.web.utils import elige_choices
 
@@ -8,12 +8,11 @@ def middleware_sessions(get_response):
     def middleware(request):
         try:
             # Código de middleware antes de almacenar el objeto en la sesión
-            objectCompany = Company.objects.all().first()
+            objectCompany = Company.objects.first()
             serializedObj = serializers.serialize('json', [objectCompany])
-            request.session['object_serialzer'] = json.loads(serializedObj)
-        except:
-            request.session['object_serialzer'] = None
-
+            request.session['object_serializer'] = json.loads(serializedObj)
+        except Exception:
+            request.session['object_serializer'] = None
 
         objectsSocialNetwork = SocialNetworkCompany.objects.all()
         lstSocialNetwork = []
@@ -26,8 +25,7 @@ def middleware_sessions(get_response):
             lstSocialNetwork.append(jsonSocialNetwork)
         request.session['lst_social_network'] = lstSocialNetwork
 
-
-        objectItems = Items.objects.filter(menu__me_isactive = 1).order_by('it_order')
+        objectItems = Items.objects.filter(menu__me_isactive=1).order_by('it_order')
         lstItems = []
         for item in objectItems:
             jsonItems = {
@@ -37,8 +35,7 @@ def middleware_sessions(get_response):
             lstItems.append(jsonItems)
         request.session['lst_items'] = lstItems
 
-
-        objectOtherLinks = OtherLinks.objects.filter(ol_active = 1).order_by('ol_order')
+        objectOtherLinks = OtherLinks.objects.filter(ol_active=1).order_by('ol_order')
         lstOtherLinks = []
         for ol in objectOtherLinks:
             jsonOtherLinks = {
@@ -48,6 +45,9 @@ def middleware_sessions(get_response):
             lstOtherLinks.append(jsonOtherLinks)
         request.session['lst_other_links'] = lstOtherLinks
 
+        objectClients = Client.objects.all()
+        request.session['object_clients'] = list(objectClients.values())
+        
         response = get_response(request)
 
         # Código de middleware después de procesar la respuesta

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     {% if typePage == 'home' %}
-    <title>LokiLabs | {{ request.session.object_serialzer.0.fields.com_title }}</title>
+    <title>LokiLabs | {{ request.session.object_serializer.0.fields.com_title }}</title>
     {% else %}
     <title>LokiLabs | {{ title }}</title>
     {% endif %}
@@ -15,7 +15,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/media/{{ request.session.object_serialzer.0.fields.com_imagecompanyicon }}" rel="icon">
+    <link href="/media/{{ request.session.object_serializer.0.fields.com_imagecompanyicon }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,11 +50,11 @@
     </div>
     <!-- Spinner End -->
 
-    {% include 'web/topbar.html' with objects=request.session.object_serialzer.0.fields objects2=request.session.lst_social_network %}
+    {% include 'web/topbar.html' with objects=request.session.object_serializer.0.fields objects2=request.session.lst_social_network %}
 
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
-        {% include 'web/menu.html' with objects=request.session.lst_items objects2=request.session.object_serialzer.0.fields  %}
+        {% include 'web/menu.html' with objects=request.session.lst_items objects2=request.session.object_serializer.0.fields  %}
 
         {% if typePage == 'home' %}
 
@@ -84,7 +84,7 @@
     </div>
     <!-- Full Screen Search End -->
 
-    {% if typePage == 'home' %}
+    {% if request.session.object_clients %}
     <!-- Facts Start -->
     <div class="container-fluid facts py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
@@ -140,7 +140,7 @@
     
 
     <!-- Footer Start -->
-    {% include 'web/footer.html' with objects1=request.session.lst_items objects2=request.session.lst_other_links object3=request.session.object_serialzer.0.fields listSocialNetworks=request.session.lst_social_network %}
+    {% include 'web/footer.html' with objects1=request.session.lst_items objects2=request.session.lst_other_links object3=request.session.object_serializer.0.fields listSocialNetworks=request.session.lst_social_network %}
     <!-- Footer End -->
 
 
