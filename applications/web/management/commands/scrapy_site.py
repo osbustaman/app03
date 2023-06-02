@@ -69,20 +69,28 @@ class Command(BaseCommand):
             file.write(code_html)
 
 
-    def modify_links(self, html_content, name_file=""):
+    def modify_links(self, html_content, link_page):
         soup = BeautifulSoup(html_content, 'html.parser')
         a_tags = soup.find_all('a')
 
         for a_tag in a_tags:
-            href = a_tag.get('href')  # Obtener el enlace actual
-            print(href)
-            # Realizar las modificaciones necesarias en el enlace
-            # Por ejemplo, cambiar '/ruta' por '/nueva_ruta'
-            #new_href = href.replace('/ruta', '/nueva_ruta')
-            #a_tag['href'] = new_href  # Asignar el nuevo enlace al atributo 'href'
+            _tags = a_tag.get('data-bs-menu')
+            if _tags == "menu-page":
+                #print(link_page)
+                href = a_tag.get('href')
+                
+                if href == "/":
+                    the_link = href
+                else:
+                    the_page = href.replace("/", "")
+                    the_link = f"{the_page}.html"
+                # Realizar las modificaciones necesarias en el enlace
+                # Por ejemplo, cambiar '/ruta' por '/nueva_ruta'
+                new_href = href.replace(href, the_link)
+                a_tag['href'] = new_href  # Asignar el nuevo enlace al atributo 'href'   
 
-        #modified_html = str(soup)  # Obtener el HTML modificado como una cadena de texto
-        #return modified_html
+        modified_html = str(soup)  # Obtener el HTML modificado como una cadena de texto
+        return modified_html
 
     def handle(self, *args, **options):
 
@@ -97,7 +105,7 @@ class Command(BaseCommand):
                 url_page = f"{self.get_domain_url()}/{it.it_link}"
                 code_html = self.get_code_html(url_page)
             
-            urls_tags = self.get_all_a_tags(url_page, name_file)
+            code_html = self.modify_links(code_html, it.it_link)
 
             rutas_css, rutas_js, rutas_img = self.get_route_files(url_page)
 
