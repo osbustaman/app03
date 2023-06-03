@@ -1,243 +1,185 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    
-    <title>LokiLabs | contactanos</title>
-    
-    
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-    <!-- Favicon -->
-    <link href="/media/company_images/icon.png" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-
-    <!-- Libraries Stylesheet -->
-    <link href="/static/web/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/static/web/lib/animate/animate.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/static/web/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="/static/web/css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <!-- jquery confirm -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<meta charset="utf-8"/>
+<title>LokiLabs | contactanos</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Free HTML Templates" name="keywords"/>
+<meta content="Free HTML Templates" name="description"/>
+<!-- Favicon -->
+<link href="/media/company_images/icon.png" rel="icon"/>
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Rubik:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+<!-- Libraries Stylesheet -->
+<link href="/static/web/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
+<link href="/static/web/lib/animate/animate.min.css" rel="stylesheet"/>
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/static/web/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Template Stylesheet -->
+<link href="/static/web/css/style.css" rel="stylesheet"/>
+<script src="/static/web/js/jquery-3.4.1.min.js"></script>
+<!-- jquery confirm -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
-    </div>
-    <!-- Spinner End -->
-
-    <!-- Topbar Start -->
+<!-- Spinner Start -->
+<div class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" id="spinner">
+<div class="spinner"></div>
+</div>
+<!-- Spinner End -->
+<!-- Topbar Start -->
 <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-    <div class="row gx-0">
-        <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-            <div class="d-inline-flex align-items-center" style="height: 45px;">
-                
-                <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+56 9 8782 4323</small>
-                <small class="text-light"><i class="fa fa-envelope-open me-2"></i>informaciones@lokilabs.cl</small>
-            </div>
-        </div>
-        <div class="col-lg-4 text-center text-lg-end">
-            <div class="d-inline-flex align-items-center" style="height: 45px;">
-                
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.facebook.com/LokiLabs-106785405765326" target="_blank"><i class="fab fa-facebook-f fw-normal"></i></a>
-                
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.linkedin.com/in/loki-labs-6a4533278/" target="_blank"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube fw-normal"></i></a>
-                
-            </div>
-        </div>
-    </div>
+<div class="row gx-0">
+<div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+<div class="d-inline-flex align-items-center" style="height: 45px;">
+<small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+56 9 8782 4323</small>
+<small class="text-light"><i class="fa fa-envelope-open me-2"></i>informaciones@lokilabs.cl</small>
+</div>
+</div>
+<div class="col-lg-4 text-center text-lg-end">
+<div class="d-inline-flex align-items-center" style="height: 45px;">
+<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.facebook.com/LokiLabs-106785405765326" target="_blank"><i class="fab fa-facebook-f fw-normal"></i></a>
+<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.linkedin.com/in/loki-labs-6a4533278/" target="_blank"><i class="fab fa-linkedin-in fw-normal"></i></a>
+<a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube fw-normal"></i></a>
+</div>
+</div>
+</div>
 </div>
 <!-- Topbar End -->
-
-    <!-- Navbar & Carousel Start -->
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-    <a href="index.html" class="navbar-brand p-0">
-        <h1 class="m-0">
-            <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>LokiLabs</h1>
-        </h1>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="fa fa-bars"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto py-0">
-            
-            
-            <a href="/" class="nav-item nav-link ">Home</a>
-            
-            
-            
-            <a href="/acerca-de-nosotros/" data-bs-menu="menu-page" class="nav-item nav-link ">Sobre Nosotros</a>
-            
-            
-            
-            <a href="/nuestros-servicios/" data-bs-menu="menu-page" class="nav-item nav-link ">Nuestros Servicios</a>
-            
-            
-            
-            <a href="/contactanos/" data-bs-menu="menu-page" class="nav-item nav-link active">Contactanos</a>
-            
-            
-        </div>
-        
-    </div>
+<!-- Navbar & Carousel Start -->
+<div class="container-fluid position-relative p-0">
+<nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+<a class="navbar-brand p-0" href="index.html">
+<h1 class="m-0">
+<h1 class="m-0"><i class="fa fa-user-tie me-2"></i>LokiLabs</h1>
+</h1>
+</a>
+<button class="navbar-toggler" data-bs-target="#navbarCollapse" data-bs-toggle="collapse" type="button">
+<span class="fa fa-bars"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+<div class="navbar-nav ms-auto py-0">
+<a class="nav-item nav-link" href="/">Home</a>
+<a class="nav-item nav-link" data-bs-menu="menu-page" href="acerca-de-nosotros.html">Sobre Nosotros</a>
+<a class="nav-item nav-link" data-bs-menu="menu-page" href="nuestros-servicios.html">Nuestros Servicios</a>
+<a class="nav-item nav-link active" data-bs-menu="menu-page" href="contactanos.html">Contactanos</a>
+</div>
+</div>
 </nav>
-
-        
-
-        
-    </div>
-    <!-- Navbar & Carousel End -->
-
-    <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Full Screen Search End -->
-
-    
-
-    
-        <style>
+</div>
+<!-- Navbar & Carousel End -->
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+<div class="modal-dialog modal-fullscreen">
+<div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+<div class="modal-header border-0">
+<button aria-label="Close" class="btn bg-white btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body d-flex align-items-center justify-content-center">
+<div class="input-group" style="max-width: 600px;">
+<input class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword" type="text"/>
+<button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Full Screen Search End -->
+<style>
     .bg-header {
         background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(/media/company_images/carousel-2_BAWt53R.jpg) center center no-repeat !important;
         background-size: cover;
     }
 </style>
 <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-    <div class="row py-5">
-        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-            <h1 class="display-4 text-white animated zoomIn">Contactanos</h1>
-            <a href="/" class="h5 text-white">Ir a Home</a>
-        </div>
-    </div>
+<div class="row py-5">
+<div class="col-12 pt-lg-5 mt-lg-5 text-center">
+<h1 class="display-4 text-white animated zoomIn">Contactanos</h1>
+<a class="h5 text-white" href="/">Ir a Home</a>
 </div>
-
+</div>
+</div>
 <!-- Contact Start -->
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Contactanos</h5>
-            <h1 class="mb-0">Si tiene alguna consulta, no dude en contactarnos</h1>
-        </div>
-        <div class="row g-5 mb-5">
-
-            
-            <div class="col-lg-4">
-                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
-                    <div class="bg-primary d-flex align-items-center justify-content-center rounded"
-                        style="width: 60px; height: 60px;">
-                        <i class="fa fa-phone-alt text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h5 class="mb-2">Llamanos al número</h5>
-                        <h4 class="text-primary mb-0">+56 9 8782 4323</h4>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4">
-                <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
-                    <div class="bg-primary d-flex align-items-center justify-content-center rounded"
-                        style="width: 60px; height: 60px;">
-                        <i class="fa fa-envelope-open text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h5 class="mb-2">Contactanos al email</h5>
-                        <h4 class="text-primary mb-0">informaciones@lokilabs.cl</h4>
-                    </div>
-                </div>
-            </div>
-            
-
-        </div>
-        <div class="row g-5">
-            <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-                <form name="frm" id="frm" method="post">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Tu nombre*"
-                                style="height: 55px;" id="nameInput" name="nameInput">
-                        </div>
-                        <div class="col-6">
-                            <select class="form-select bg-light border-0" style="height: 55px;" id="serviceSelect"
-                                name="serviceSelect">
-                                <option selected>Selecciona un servicio*</option>
-                                
-                                <option value="1">Desarrollo de sistemas web</option>
-                                
-                                <option value="2">Servicio One-Premise</option>
-                                
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Teléfono"
-                                style="height: 55px;" id="phoneInput" name="phoneInput" oninput="validateInput(event)">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="email" class="form-control border-0 bg-light px-4" placeholder="Tu correo*"
-                                style="height: 55px;" id="emailInput" name="emailInput">
-                        </div>
-                        <div class="col-12">
-                            <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Mensaje*"
-                                id="messageInput" name="messageInput"></textarea></textarea>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="button" onclick="sendMessage()">Enviar
+<div class="container py-5">
+<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+<h5 class="fw-bold text-primary text-uppercase">Contactanos</h5>
+<h1 class="mb-0">Si tiene alguna consulta, no dude en contactarnos</h1>
+</div>
+<div class="row g-5 mb-5">
+<div class="col-lg-4">
+<div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+<div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+<i class="fa fa-phone-alt text-white"></i>
+</div>
+<div class="ps-4">
+<h5 class="mb-2">Llamanos al número</h5>
+<h4 class="text-primary mb-0">+56 9 8782 4323</h4>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+<div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+<i class="fa fa-envelope-open text-white"></i>
+</div>
+<div class="ps-4">
+<h5 class="mb-2">Contactanos al email</h5>
+<h4 class="text-primary mb-0">informaciones@lokilabs.cl</h4>
+</div>
+</div>
+</div>
+</div>
+<div class="row g-5">
+<div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+<form id="frm" method="post" name="frm">
+<div class="row g-3">
+<div class="col-6">
+<input class="form-control border-0 bg-light px-4" id="nameInput" name="nameInput" placeholder="Tu nombre*" style="height: 55px;" type="text"/>
+</div>
+<div class="col-6">
+<select class="form-select bg-light border-0" id="serviceSelect" name="serviceSelect" style="height: 55px;">
+<option selected="">Selecciona un servicio*</option>
+<option value="1">Desarrollo de sistemas web</option>
+<option value="2">Servicio One-Premise</option>
+</select>
+</div>
+<div class="col-md-6">
+<input class="form-control border-0 bg-light px-4" id="phoneInput" name="phoneInput" oninput="validateInput(event)" placeholder="Teléfono" style="height: 55px;" type="text"/>
+</div>
+<div class="col-md-6">
+<input class="form-control border-0 bg-light px-4" id="emailInput" name="emailInput" placeholder="Tu correo*" style="height: 55px;" type="email"/>
+</div>
+<div class="col-12">
+<textarea class="form-control border-0 bg-light px-4 py-3" id="messageInput" name="messageInput" placeholder="Mensaje*" rows="4"></textarea>
+</div>
+<div class="col-12">
+<button class="btn btn-primary w-100 py-3" onclick="sendMessage()" type="button">Enviar
                                 mensaje</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212999.27177144706!2d-70.79464024601711!3d-33.47239249134405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1684932148408!5m2!1ses!2scl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</form>
+</div>
+<div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
+<iframe allowfullscreen="" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212999.27177144706!2d-70.79464024601711!3d-33.47239249134405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5410425af2f%3A0x8475d53c400f0931!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1684932148408!5m2!1ses!2scl" style="border:0;" width="600"></iframe>
+</div>
+</div>
+</div>
 </div>
 <!-- Contact End -->
-
 <script>
 
     const send_message = () => {
-        const link = "/ajaxRequest/";
+        const link = "http://crm.lokilabs.cl/ajaxRequest/";
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -305,131 +247,98 @@
         return emailRegex.test(email);
     }
 </script>
-    
-    
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="row gx-5">
-            <div class="col-lg-4 col-md-6 footer-about">
-                <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
-                    <a href="index.html" class="navbar-brand">
-                        <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>LokiLabs</h1>
-                    </a>
-                    
-                    <p class="mt-3 mb-4">¡Ingresa tu correo electrónico y descubre nuestros servicios más destacados! Mantente al tanto de nuestras últimas novedades, ofertas especiales y contenido exclusivo. Únete a nuestra comunidad y sé el primero en disfrutar de todas las ventajas. ¡Regístrate ahora para no perderte nada!</p>
-                    <form name="frm" id="frm" action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-white p-3" placeholder="Ingresa tú correo" id="emailInput" name="emailInput">
-                            <button class="btn btn-dark" type="button" onclick="sendMessage()">Registrarse</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-6">
-                <div class="row gx-5">
-                    <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="text-light mb-0">Ponerse en Contacto</h3>
-                        </div>
-                        
-                            
-                            
-                        
-                        <div class="d-flex mb-2">
-                            <i class="bi bi-envelope-open text-primary me-2"></i>
-                            <p class="mb-0">informaciones@lokilabs.cl</p>
-                        </div>
-                        <div class="d-flex mb-2">
-                            <i class="bi bi-telephone text-primary me-2"></i>
-                            <p class="mb-0">+56 9 8782 4323</p>
-                        </div>
-                        <div class="d-flex mt-4">
-                            
-                            <a class="btn btn-primary btn-square me-2" href="https://www.facebook.com/LokiLabs-106785405765326" target="_blank"><i class="fab fa-facebook-f fw-normal"></i></a>
-                            
-                            <a class="btn btn-primary btn-square me-2" href="https://www.linkedin.com/in/loki-labs-6a4533278/" target="_blank"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                            
-                            <a class="btn btn-primary btn-square me-2" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube fw-normal"></i></a>
-                            
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="text-light mb-0">Enlaces Rápidos</h3>
-                        </div>
-                        <div class="link-animated d-flex flex-column justify-content-start">
-                            
-                            <a class="text-light mb-2" data-bs-menu="menu-page" href="/"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                            
-                            <a class="text-light mb-2" data-bs-menu="menu-page" href="acerca-de-nosotros"><i class="bi bi-arrow-right text-primary me-2"></i>Sobre Nosotros</a>
-                            
-                            <a class="text-light mb-2" data-bs-menu="menu-page" href="nuestros-servicios"><i class="bi bi-arrow-right text-primary me-2"></i>Nuestros Servicios</a>
-                            
-                            <a class="text-light mb-2" data-bs-menu="menu-page" href="contactanos"><i class="bi bi-arrow-right text-primary me-2"></i>Contactanos</a>
-                            
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="text-light mb-0">Enlaces Populares</h3>
-                        </div>
-                        <div class="link-animated d-flex flex-column justify-content-start">
-                            
-                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Python</a>
-                            
-                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Django</a>
-                            
-                            <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Java</a>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+<div class="container">
+<div class="row gx-5">
+<div class="col-lg-4 col-md-6 footer-about">
+<div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+<a class="navbar-brand" href="index.html">
+<h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>LokiLabs</h1>
+</a>
+<p class="mt-3 mb-4">¡Ingresa tu correo electrónico y descubre nuestros servicios más destacados! Mantente al tanto de nuestras últimas novedades, ofertas especiales y contenido exclusivo. Únete a nuestra comunidad y sé el primero en disfrutar de todas las ventajas. ¡Regístrate ahora para no perderte nada!</p>
+<form action="" id="frm" name="frm">
+<div class="input-group">
+<input class="form-control border-white p-3" id="emailInput2" name="emailInput2" placeholder="Ingresa tú correo" type="text"/>
+<button class="btn btn-dark" onclick="sendDataEmail()" type="button">Registrarse</button>
+</div>
+</form>
+</div>
+</div>
+<div class="col-lg-8 col-md-6">
+<div class="row gx-5">
+<div class="col-lg-4 col-md-12 pt-5 mb-5">
+<div class="section-title section-title-sm position-relative pb-3 mb-4">
+<h3 class="text-light mb-0">Ponerse en Contacto</h3>
+</div>
+<div class="d-flex mb-2">
+<i class="bi bi-envelope-open text-primary me-2"></i>
+<p class="mb-0">informaciones@lokilabs.cl</p>
+</div>
+<div class="d-flex mb-2">
+<i class="bi bi-telephone text-primary me-2"></i>
+<p class="mb-0">+56 9 8782 4323</p>
+</div>
+<div class="d-flex mt-4">
+<a class="btn btn-primary btn-square me-2" href="https://www.facebook.com/LokiLabs-106785405765326" target="_blank"><i class="fab fa-facebook-f fw-normal"></i></a>
+<a class="btn btn-primary btn-square me-2" href="https://www.linkedin.com/in/loki-labs-6a4533278/" target="_blank"><i class="fab fa-linkedin-in fw-normal"></i></a>
+<a class="btn btn-primary btn-square me-2" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube fw-normal"></i></a>
+</div>
+</div>
+<div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+<div class="section-title section-title-sm position-relative pb-3 mb-4">
+<h3 class="text-light mb-0">Enlaces Rápidos</h3>
+</div>
+<div class="link-animated d-flex flex-column justify-content-start">
+<a class="text-light mb-2" data-bs-menu="menu-page" href="/"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+<a class="text-light mb-2" data-bs-menu="menu-page" href="acerca-de-nosotros.html"><i class="bi bi-arrow-right text-primary me-2"></i>Sobre Nosotros</a>
+<a class="text-light mb-2" data-bs-menu="menu-page" href="nuestros-servicios.html"><i class="bi bi-arrow-right text-primary me-2"></i>Nuestros Servicios</a>
+<a class="text-light mb-2" data-bs-menu="menu-page" href="contactanos.html"><i class="bi bi-arrow-right text-primary me-2"></i>Contactanos</a>
+</div>
+</div>
+<div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+<div class="section-title section-title-sm position-relative pb-3 mb-4">
+<h3 class="text-light mb-0">Enlaces Populares</h3>
+</div>
+<div class="link-animated d-flex flex-column justify-content-start">
+<a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Python</a>
+<a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Django</a>
+<a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Java</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="container-fluid text-white" style="background: #061429;">
-    <div class="container text-center">
-        <div class="row justify-content-end">
-            <div class="col-lg-8 col-md-6">
-                <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                    <small>
-                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"></a>. Todos los derechos reservados. 
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Diseñado por <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
-                    <br>Dsitribuido por: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container text-center">
+<div class="row justify-content-end">
+<div class="col-lg-8 col-md-6">
+<div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+<small>
+<p class="mb-0">© <a class="text-white border-bottom" href="#"></a>. Todos los derechos reservados.
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Diseñado por <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+</p>
+<br/>Dsitribuido por: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+</small>
 </div>
-
+</div>
+</div>
+</div>
+</div>
 <script>
 
-    const send_message = () => {
-        const link = "/ajaxRegisterMail/";
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                type: "POST",
-                url: link,
-                data: $('#frm').serialize(),
-                success: function (data) {
-                    resolve(data);
-                },
-                error: function (obj, error, objError) {
-                    console.log("Error");
-                    reject(objError);
-                }
-            });
-        });
-    };
+    const sendDataEmail = () => {
 
-    function sendMessage() {
-        const email = document.getElementById('emailInput').value;
+        // Obtener los valores del formulario
+        const email = document.getElementById('emailInput2').value;
 
         if (email === '') {
             $.alert({
@@ -445,48 +354,49 @@
                 content: 'La dirección de correo electrónico es válida',
             });
             return;
-        } 
+        }
 
-        send_message()
-            .then(data => {
+        // Endpoint al que se realizará la solicitud POST
+        const endpoint = 'http://crm.lokilabs.cl/ajaxRegisterMail/';
+
+        // Configurar Axios para omitir la protección CSRF
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+        // Realizar la solicitud POST utilizando Axios
+        axios.post(endpoint, {"rw_mailcontact": email})
+            .then(response => {
+                // La solicitud fue exitosa
                 $.alert({
-                    title: 'Confirmación!',
-                    content: 'Tú consulta fue enviada con éxito, te contactaremos a la brevedad!',
+                    title: 'Aviso!',
+                    content: 'registro realizado con éxito!!',
                 });
-                return;
             })
             .catch(error => {
-                console.error(error);
+                // Ocurrió un error durante la solicitud
+                console.error('Error en la solicitud:', error.message);
+                $.alert({
+                    title: 'Error!',
+                    content: 'Error en la solicitud:'+ error.message,
+                });
             });
-    }
-
-    function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
+    };
 </script>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/web/lib/wow/wow.min.js"></script>
-    <script src="/static/web/lib/easing/easing.min.js"></script>
-    <script src="/static/web/lib/waypoints/waypoints.min.js"></script>
-    <script src="/static/web/lib/counterup/counterup.min.js"></script>
-    <script src="/static/web/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="/static/web/js/main.js"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-45RJBC1C18"></script>
-    <script>
+<!-- Footer End -->
+<!-- Back to Top -->
+<a class="btn btn-lg btn-primary btn-lg-square rounded back-to-top" href="#"><i class="bi bi-arrow-up"></i></a>
+<!-- JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/web/lib/wow/wow.min.js"></script>
+<script src="/static/web/lib/easing/easing.min.js"></script>
+<script src="/static/web/lib/waypoints/waypoints.min.js"></script>
+<script src="/static/web/lib/counterup/counterup.min.js"></script>
+<script src="/static/web/lib/owlcarousel/owl.carousel.min.js"></script>
+<!-- Template Javascript -->
+<script src="/static/web/js/main.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-45RJBC1C18"></script>
+<script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -494,5 +404,4 @@
         gtag('config', 'G-45RJBC1C18');
     </script>
 </body>
-
 </html>
