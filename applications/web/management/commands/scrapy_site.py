@@ -119,4 +119,5 @@ class Command(BaseCommand):
             self.save_statics_files(rutas_js)
             self.save_statics_files(rutas_img)
 
+
             

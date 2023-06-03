@@ -10,8 +10,8 @@
                     <p class="mt-3 mb-4">{{ object3.com_textfooter }}</p>
                     <form name="frm" id="frm" action="">
                         <div class="input-group">
-                            <input type="text" class="form-control border-white p-3" placeholder="Ingresa tú correo" id="emailInput" name="emailInput">
-                            <button class="btn btn-dark" type="button" onclick="sendMessage()">Registrarse</button>
+                            <input type="text" class="form-control border-white p-3" placeholder="Ingresa tú correo" id="emailInput2" name="emailInput2">
+                            <button class="btn btn-dark" type="button" onclick="sendMail()">Registrarse</button>
                         </div>
                     </form>
                 </div>
@@ -84,8 +84,8 @@
 
 <script>
 
-    const send_message = () => {
-        const link = "http://54.226.99.233/ajaxRegisterMail/";
+    const send_mail = () => {
+        const link = "http://crm.lokilabs.cl/ajaxRegisterMail/";
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -96,15 +96,15 @@
                     resolve(data);
                 },
                 error: function (obj, error, objError) {
-                    console.log("Error");
+                    console.log(objError);
                     reject(objError);
                 }
             });
         });
     };
 
-    function sendMessage() {
-        const email = document.getElementById('emailInput').value;
+    function sendMail() {
+        const email = document.getElementById('emailInput2').value;
 
         if (email === '') {
             $.alert({
@@ -122,7 +122,7 @@
             return;
         } 
 
-        send_message()
+        send_mail()
             .then(data => {
                 $.alert({
                     title: 'Confirmación!',
