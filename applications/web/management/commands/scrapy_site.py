@@ -1,3 +1,4 @@
+import shutil
 import requests
 import os
 
@@ -21,20 +22,36 @@ class Command(BaseCommand):
         for ruta_archivo in routes_files:
             
             parts = ruta_archivo.split("/")[:-1]
+
+            # os.path.join(*parts): os.path.join() es una función que se utiliza para concatenar 
+            # diferentes partes de una ruta en un único camino válido. Al pasar *parts como argumento, 
+            # desempaqueta los elementos de la lista parts y los pasa como argumentos separados a os.path.join(). 
+            # Esto permite concatenar las partes de la ruta correctamente.
+
+            # if parts else "": Esta es una expresión condicional que verifica si la lista parts tiene elementos. 
+            # Si la lista parts no está vacía (es decir, tiene elementos), entonces se ejecuta os.path.join(*parts) 
+            # para construir la ruta de destino completa. Si la lista parts está vacía, la expresión se evalúa 
+            # como False y se asigna una cadena vacía ("") a destination_directory.
             destination_directory = os.path.join(*parts) if parts else ""
 
-            route = f"{BASE_DIR}/templates/web/www/{destination_directory}"
+            route = os.path.join(BASE_DIR, "templates", "web", "www", destination_directory)
             # Crear el directorio de destino si no existe
-            if not os.path.exists(route):
-                os.makedirs(route)
+            os.makedirs(route, exist_ok=True)
 
             nombre_archivo = os.path.basename(ruta_archivo)
             ruta_destino = os.path.join(destination_directory, nombre_archivo) if parts else ""
             
             route_static = f"{self.get_domain_url()}/{ruta_destino}"
             response = requests.get(route_static)
-            with open(os.path.join(route, nombre_archivo), 'wb') as archivo:
-                archivo.write(response.content)
+
+            # Verificar si el contenido se ha descargado correctamente
+            if response.status_code == 200:
+                with open(os.path.join(route, nombre_archivo), 'wb') as archivo:
+                    response.raw.decode_content = True
+                    shutil.copyfileobj(response.raw, archivo)
+            else:
+                # Manejar el caso en el que no se pueda descargar el archivo correctamente
+                print(f"No se pudo descargar el archivo: {ruta_archivo}")
 
     
     def get_route_files(self, url_file):
